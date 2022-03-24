@@ -7,6 +7,7 @@ body{
     justify-content: space-evenly;
     background-color: rgb(61, 0, 0);
     max-height: 50px;
+    align-items: center;
 }
 
 .boton{
@@ -21,10 +22,10 @@ body{
     background-position:left;
     height: 30px;
     width: 50px;
-    margin-top: 10px;
 }
 
 .Titulo{
-    color: red;
+    color: rgb(153, 153, 153);
     font-size: 20px;
+    font-family: Verdana
 }
