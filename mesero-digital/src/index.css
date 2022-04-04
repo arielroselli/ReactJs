@@ -1,0 +1,30 @@
+.BodyGeneralEstilo{
+    display: flex;
+    justify-content: space-between;
+    padding: 100px;
+    background-color: rgb(255, 255, 255);
+    margin: 30px;
+    min-height: 100vw;
+    border-radius: 20px;
+
+}
+
+.TablaPedidos{
+    padding: 10px;
+    background-color: red;
+    max-width: 20%;
+    min-height: 240px;
+}
+
+.itemComida{
+    display: flex;
+    flex-direction: column;
+    background-image: url(../public/images/mila.jfif);
+    height: 100px;
+    width: 100px;
+    
+}
+
+.contador{
+    display: flex;
+}

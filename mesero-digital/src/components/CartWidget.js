@@ -1,16 +1,17 @@
 
 
-const CartWidget = () => {
+
+
+
+const GreetingPrueba = (props) => {
 
     return (
-            <div>
-                <img src={'../public/logo192.png'} className="btn btn-light" alt="logo"/>
-            </div>
-            
-        
+        <div className="greeting">
+            <h1>Welcome back!</h1>
+        </div>
     )
 }
 
 
 
-export default CartWidget;
+export default GreetingPrueba
