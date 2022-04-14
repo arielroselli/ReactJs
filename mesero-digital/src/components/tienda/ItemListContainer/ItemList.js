@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import ItemCount from "../ItemCount";
+import ItemCount from "../ItemDetailContainer/ItemCount"
+
+
 
 const ItemListContainer = () => {
     const [count, setCount] = useState(1);

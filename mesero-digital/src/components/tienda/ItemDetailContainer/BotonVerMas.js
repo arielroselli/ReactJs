@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import { getComidas, getBebidas, getMilanesas, getPastas } from "../../ComidasMock";
 
 
-const VerMas = () => {
+const VerMas = ({text}) => {
     const [mostrar, setMostrar] = useState(true);
-
+    
     return (
         <>
-            <a style={{ color: 'blue'}}
+            <a style={{ color: 'blue' }}
                 type="button"
                 onClick={() => {
                     setMostrar(!mostrar);
@@ -17,12 +16,13 @@ const VerMas = () => {
             </a>
 
             {mostrar ? (
-                <div style={{ color: 'red'}}></div>
+                <div style={{ color: 'red' }}></div>
             ) : (
-                <div>Descripcion de la comida que voy a ofrecer, como se cocina y que condimentos adicionales trae, texto para rellenar bla bla bla</div>
+                <div className='descripcion'>{text}</div>
             )}
         </>
     );
 }
 
 export default VerMas
+

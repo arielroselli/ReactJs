@@ -1,21 +1,28 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ItemCount from './components/ItemCount/index';
 
 import './index.css';
-import BodyGeneral from './components/Body';
-import NavBar from './components/NavBar'
-import './components/ItemListContainer/index'
+import NavBar from './components/home/Navbar/NavBar'
+import Footer from './components/home/footer/Footer';
+import { BrowserRouter, Router, Route, Routes } from 'react-router-dom'
+import ParallaxAdmin from './components/parallax/ParallaxAdmin'
+import ParallaxCliente from './components/parallax/ParallaxCliente';
+import ParallaxHome from './components/parallax/ParallaxHome';
 
-
- const App = () => {
+const App = () => {
 
     return (
-        <div className="App">
-        <NavBar />
-        <BodyGeneral/>
-        
-        </div>
+        <>
+            <BrowserRouter>
+                <NavBar />
+                <Routes>
+                    <Route path="/home" element={<ParallaxHome /> } />
+                    <Route path="/tienda" element={<ParallaxCliente />} />
+                    <Route path="/Administracion" element={<ParallaxAdmin />} />
+                </Routes>
+            </BrowserRouter>
+            <Footer />
+        </>
     )
 
 
