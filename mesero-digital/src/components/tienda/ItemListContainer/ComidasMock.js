@@ -1,72 +1,64 @@
+import { imagenesComidas } from "./ContenedorDetallesItem/assets/images";
+
 const listaDeComidas = [
-    {
-      nombre: 'Mozzarella',
+    { nombre: 'Mozzarella',
       id: 1,
       stock: 25,
-      imagen: 'assets/comidas/mozzarella.jpg',
-      descripcion: 's'
+      imagen: imagenesComidas[5],
+      descripcion: 'Pizza de masa casera con queso Muzzarella con aceitunas '
     },
-    {
-      nombre: 'Calabresa',
+    { nombre: 'Calabresa',
       id: 2,
       stock: 15,
-      imagen: 'assets/comidas/calabresa.png' ,
+      imagen: imagenesComidas[0] ,
       descripcion: 'Pizza de mozzarella con aceitunas hecha al horno'
     },
-    {
-      nombre: 'Margherita',
+    { nombre: 'Margherita',
       id: 3,
       stock: 20,
-      imagen: 'assets/comidas/mozzarella.jpg',
+      imagen: imagenesComidas[5],
       descripcion: 'Pizza de mozzarella con aceitunas hecha al horno'
     },
-    {
-      nombre: 'Tallarines',
+    { nombre: 'Tallarines',
       id: 13,
       stock: 9,
-      imagen: 'assets/comidas/tallarines.jpg',
+      imagen: imagenesComidas[9],
       descripcion: 'Pizza de mozzarella con aceitunas hecha al horno'
     },
-    {
-      nombre: 'Ravioles',
+    { nombre: 'Ravioles',
       id: 14,
       stock: 5,
-      imagen: 'assets/comidas/ravioles.jpg',
+      imagen: imagenesComidas[8],
       descripcion: 'Pizza de mozzarella con aceitunas hecha al horno'
     },
-    {
-      nombre: 'Ñoquis',
+    { nombre: 'Ñoquis',
       id: 15,
       stock: 5,
-      imagen: 'assets/comidas/noquis.jpg',
+      imagen: imagenesComidas[6],
       descripcion: 'Pizza de mozzarella con aceitunas hecha al horno'
     },
-    {
-      nombre: 'Milanesa',
+    { nombre: 'Milanesa',
       id: 16,
       stock: 8,
-      imagen: 'assets/comidas/mila.jpg',
+      imagen: imagenesComidas[1],
       descripcion: 'Pizza de mozzarella con aceitunas hecha al horno'
     },
-    {
-      nombre: 'Milanesa a caballo',
+    { nombre: 'Milanesa a caballo',
       id: 17,
       stock: 200,
-      imagen: 'assets/comidas/milaCaballo.jpg',
+      imagen: imagenesComidas[2],
       descripcion: 'Pizza de mozzarella con aceitunas hecha al horno'
     },
-    {
-      nombre: 'Milanesa a la Suiza',
+    { nombre: 'Milanesa a la Suiza',
       id: 18,
       stock: 150,
-      imagen: 'assets/comidas/milaSuiza.jpg',
+      imagen: imagenesComidas[4],
       descripcion: 'Pizza de mozzarella con aceitunas hecha al horno'
     },
-    {
-      nombre: 'Milanesa napolitana',
+    { nombre: 'Milanesa napolitana',
       id: 19,
       stock: 150,
-      imagen: 'assets/comidas/milaNapo.jpg',
+      imagen: imagenesComidas[3],
       descripcion: 'Pizza de mozzarella con aceitunas hecha al horno'
     }
   ];
@@ -77,4 +69,20 @@ const listaDeComidas = [
         resultado(listaDeComidas)
       },2000)
     })
-  }
+  };
+
+  export const getComidasById = (id) => {
+    id = parseInt(id)
+    console.log(id)
+    return new Promise (resultado=> {
+      setTimeout(() => {
+        let comida = listaDeComidas.find(element => element.id === id)
+        console.log(comida)
+        resultado(comida)
+        
+      },2000)
+
+    })
+  };
+
+

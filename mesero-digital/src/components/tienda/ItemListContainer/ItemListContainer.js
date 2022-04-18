@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import ItemCount from "../ItemDetailContainer/ItemCount"
+import ItemCount from "./ContenedorDetallesItem/ItemCount"
+import { getComidas } from '../ItemListContainer/ComidasMock'
+import Item from "./ComidasMock";
 
 
 
 const ItemListContainer = () => {
     const [count, setCount] = useState(1);
-
+    
     const onAdd = (condition) => {
         if (condition === '-') {
             setCount(count - 1);
@@ -17,7 +19,7 @@ const ItemListContainer = () => {
     };
 
     const stock = 5;
-    const initial = 1;
+    const initial = 0;
 
     return (
         <div className="contenedorPedidos">
@@ -32,4 +34,5 @@ const ItemListContainer = () => {
     );
 };
 
-export default ItemListContainer    
+
+export default ItemListContainer

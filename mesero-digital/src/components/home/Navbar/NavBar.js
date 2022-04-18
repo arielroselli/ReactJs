@@ -36,10 +36,10 @@ const NavBar = () => {
                             </DropdownToggle>
                             <DropdownMenu>
                                 <DropdownItem>
-                                    <Link to='/tienda' className='link'>Cliente</Link>
+                                    <Link to={`/tienda`} className='link'>Cliente</Link>
                                 </DropdownItem>
                                 <DropdownItem>
-                                    <Link to='/Administracion' className='link'>Administracion</Link>
+                                    <Link to={`/Administracion`} className='link'>Administracion</Link>
                                 </DropdownItem>
                                 <DropdownItem divider />
 

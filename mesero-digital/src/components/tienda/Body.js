@@ -1,5 +1,5 @@
 import Parallax from "../parallax/ParallaxCliente";
-import Item from "./Cards/Item";
+import Item from "./ItemListContainer/ContenedorDetallesItem/Item";
 
 
 const BodyGeneral = () => {

@@ -1,15 +1,17 @@
 
 import { useEffect, useState } from 'react'
-import { Card, CardBody, CardSubtitle, CardTitle, CardImg } from 'reactstrap';
-import { getComidas } from '../ItemListContainer/ComidasMock'
-import VerMas from '../ItemDetailContainer/BotonVerMas';
-import ItemListContainer from '../ItemListContainer/ItemList';
+import { Card, CardBody, CardSubtitle, CardTitle, CardImg, NavLink } from 'reactstrap';
+import { getComidas } from '../ComidasMock'
+import VerMas from './BotonVerMas';
+import ItemListContainer from '../ItemListContainer';
+import { Link } from 'react-router-dom';
 
 
-const Item = (props) => {
-
+const Item = () => {
+    
     const [comidas, setComidas] = useState([])
     const [item, setItem] = useState()
+
     useEffect(async () => {
         await getComidas().then(datos => {
             setComidas(datos)
@@ -22,21 +24,21 @@ const Item = (props) => {
             {comidas.map(plato =>
                 <div id={plato.id} key={plato.id}>
 
-                    <Card>
+                    <Card className='justify-content-center'>
                         
                         <CardImg className='cardImagen' src={plato.imagen}/>
 
                         <CardBody>
 
-                            <CardTitle >{plato.nombre}</CardTitle>
+                            <CardTitle ><h2>{plato.nombre}</h2></CardTitle>
 
                             <CardSubtitle className="mb-2 text-muted" tag="h6">
-                                Stock : {plato.stock}
+                                Disponible: {plato.stock}
                             </CardSubtitle>
 
-                            <VerMas text={plato.descripcion}/>
+                            <Link to={`/detalles/${plato.id}`} className='btn btn-dark verDetalles'>Ver detalles</Link>
 
-                            <ItemListContainer onClick={() => { setItem(plato.id) }} />
+                            <ItemListContainer className="itemCount" onClick={() => { setItem(plato.id) }} />
                         </CardBody>
                     </Card>
                 </div>
