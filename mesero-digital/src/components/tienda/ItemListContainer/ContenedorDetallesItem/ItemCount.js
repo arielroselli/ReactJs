@@ -1,19 +1,25 @@
-import React from "react";
+
+import { useState } from "react";
 import { Button, ButtonGroup } from "reactstrap"
 
 
+const ItemCount = ({ onAdd, stock, initial }) => {
+const [count, setCount] = useState (initial)
 
-const ItemCount = ({ onAdd,stock, initial, count }) => {
+const clickeado = () => {
+  onAdd(count)
+}
 
     return (
         <div className="cardComidas">
             <ButtonGroup>
                 <Button onClick={() => {
                     if (count > initial) {
-                        onAdd('-');
+                        setCount(count - 1);
                     }
-                    if (count > initial) {
-                        onAdd('-');
+                    console.log(count)
+                    if (count == initial) {
+                        setCount(1);
                     }
                 }} className="botonCard" color="success">
 
@@ -23,15 +29,19 @@ const ItemCount = ({ onAdd,stock, initial, count }) => {
                 </Button>
                 <Button onClick={() => {
                     if (count < stock) {
-                        onAdd('+')
+                        setCount(count + 1)
+                    }
+                    if (count == stock) {
+                        setCount(stock);
                     }
                 }} className="botonCard" color="success">
 
                     +</Button>
             </ButtonGroup>
-            <Button className="botonCardAgregar" >
+            <Button onClick={clickeado} className="botonCardAgregar">
                 Agregar
             </Button>
+
 
         </div>
     )
