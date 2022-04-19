@@ -1,51 +1,59 @@
 
 import { useEffect, useState } from 'react'
-import { Card, CardBody, CardSubtitle, CardTitle, CardImg, NavLink } from 'reactstrap';
-import { getComidas } from '../ComidasMock'
-import VerMas from './BotonVerMas';
+import { Card, CardBody, CardSubtitle, CardTitle, CardImg } from 'reactstrap';
 import ItemListContainer from '../ItemListContainer';
 import { Link } from 'react-router-dom';
+import ItemCount from './ItemCount';
 
 
-const Item = () => {
-    
-    const [comidas, setComidas] = useState([])
-    const [item, setItem] = useState()
+const Item = ({ data }) => {
 
-    useEffect(async () => {
-        await getComidas().then(datos => {
-            setComidas(datos)
+const [agregar, setAgregar] = useState(0)
 
-        })
-    }, [])
+    const [plato, setPlato] = useState(data)
+
+    useEffect(() => {
+        setPlato(data)
+    }, [data])
+
+    const agregarCarrito = (evento) => {
+      console.log(evento)
+      
+    }
 
     return (
         <div className='cardList'>
-            {comidas.map(plato =>
-                <div id={plato.id} key={plato.id}>
 
-                    <Card className='justify-content-center'>
-                        
-                        <CardImg className='cardImagen' src={plato.imagen}/>
+            <div id={plato?plato.id : null} key={plato.id}>
 
-                        <CardBody>
+                <Card className='justify-content-center'>
 
-                            <CardTitle ><h2>{plato.nombre}</h2></CardTitle>
+                    <CardImg className='cardImagen' src={plato?plato.imagen : null} />
 
-                            <CardSubtitle className="mb-2 text-muted" tag="h6">
-                                Disponible: {plato.stock}
-                            </CardSubtitle>
+                    <CardBody>
 
-                            <Link to={`/detalles/${plato.id}`} className='btn btn-dark verDetalles'>Ver detalles</Link>
+                        <CardTitle ><h2>{plato?plato.nombre : null}</h2></CardTitle>
 
-                            <ItemListContainer className="itemCount" onClick={() => { setItem(plato.id) }} />
-                        </CardBody>
-                    </Card>
-                </div>
-            )}
+                        <CardSubtitle className="mb-2 text-muted" tag="h6">
+                            Disponible: {plato?plato.stock : null}
+                        </CardSubtitle>
+
+                        <Link to={`/detalles/${plato.id}`} className='btn btn-dark verDetalles'>Ver detalles</Link>
+
+                        <ItemListContainer className="itemCount" onClick={() => { setPlato(plato?plato.id : null) }} />
+
+                        {plato? <ItemCount onAdd={agregarCarrito} stock={plato.stock} initial={1} /> : null}
+                   
+
+                    </CardBody>
+                </Card>
+            </div>
+            
         </div>
     )
 }
 
 
 export default Item
+/* 
+ */

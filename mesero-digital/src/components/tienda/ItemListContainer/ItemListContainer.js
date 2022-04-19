@@ -1,11 +1,10 @@
-import React, { useState } from "react";
-import ItemCount from "./ContenedorDetallesItem/ItemCount"
+import React, { useEffect, useState } from "react";
 import { getComidas } from '../ItemListContainer/ComidasMock'
-import Item from "./ComidasMock";
+import ItemList from "./ContenedorDetallesItem/ItemList";
 
 
 
-const ItemListContainer = () => {
+const ItemListContainer = ({cat}) => {
     const [count, setCount] = useState(1);
     
     const onAdd = (condition) => {
@@ -18,14 +17,22 @@ const ItemListContainer = () => {
 
     };
 
-    const stock = 5;
-    const initial = 0;
+    const [lista, setLista] = useState([])
+
+    useEffect(async () => {
+        if ( cat== "tienda")
+        {await getComidas().then(datos => {
+            setLista(datos)
+
+        })}
+    }, [cat])
+
 
     return (
         <div className="contenedorPedidos">
             <div className="itemComida">
                 <div className="contador">
-                    <ItemCount onAdd={onAdd} stock={stock} initial={initial} count={count} />
+                    <ItemList lista={lista}/>
                 </div>
             </div>
 

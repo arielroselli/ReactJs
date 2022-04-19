@@ -15,10 +15,9 @@ const NavBar = () => {
                 expand="xl"
                 fixed="top"
             >
-                <NavbarBrand>
-                    <Link to='/home' className='linkHome'><img className='imgLogo' src='/assets/logo/pizza.png'/>Mesero Digital</Link>
+                <NavbarBrand href="/" className='linkHome'><img className='imgLogo' src='/assets/logo/pizza.png'/>
+                Mesero Digital
                 </NavbarBrand>
-                <NavbarToggler onClick={function noRefCheck() { }} />
                 <Collapse navbar>
                     <Nav
                         className="me-auto"
@@ -35,11 +34,11 @@ const NavBar = () => {
                                 Modo de la pagina
                             </DropdownToggle>
                             <DropdownMenu>
-                                <DropdownItem>
-                                    <Link to={`/tienda`} className='link'>Cliente</Link>
+                                <DropdownItem tag='a' href='/tienda'>
+                                    Cliente
                                 </DropdownItem>
-                                <DropdownItem>
-                                    <Link to={`/Administracion`} className='link'>Administracion</Link>
+                                <DropdownItem tag='a' href='/administracion'>
+                                    Administracion
                                 </DropdownItem>
                                 <DropdownItem divider />
 

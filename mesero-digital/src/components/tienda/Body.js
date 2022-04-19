@@ -1,11 +1,13 @@
-import Parallax from "../parallax/ParallaxCliente";
-import Item from "./ItemListContainer/ContenedorDetallesItem/Item";
-
+import ItemListContainer from "./ItemListContainer/ItemListContainer";
+import { useParams } from "react-router-dom";
 
 const BodyGeneral = () => {
+
+const {categoria} = useParams()
+
   return (
     <>
-      <Item/>
+      <ItemListContainer cat={categoria}/>
 
     </>
   )

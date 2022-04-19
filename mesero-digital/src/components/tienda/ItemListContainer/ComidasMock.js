@@ -73,11 +73,11 @@ const listaDeComidas = [
 
   export const getComidasById = (id) => {
     id = parseInt(id)
-    console.log(id)
+
     return new Promise (resultado=> {
       setTimeout(() => {
         let comida = listaDeComidas.find(element => element.id === id)
-        console.log(comida)
+
         resultado(comida)
         
       },2000)

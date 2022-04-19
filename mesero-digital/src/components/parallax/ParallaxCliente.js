@@ -2,7 +2,10 @@ import React from "react"
 import './parallax.css';
 import BodyGeneral from "../tienda/Body";
 
+
 const ParallaxCliente = () => {
+
+
 
     return (
         <>

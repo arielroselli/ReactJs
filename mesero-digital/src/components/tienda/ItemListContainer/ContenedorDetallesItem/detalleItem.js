@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom'
 
 const Detalles = () => {
     const { id } = useParams()
-    console.log(id)
+
     const [comidas, setComidas] = useState()
     const [item, setItem] = useState()
     useEffect(async () => {
@@ -19,6 +19,7 @@ const Detalles = () => {
     }, [])
     const esperando = (<div>Esperando</div>)
 
+    
     const dataC = (<div className='detalleItem'>
 
         <div id={comidas === undefined ? null : comidas.id} key={comidas === undefined ? null : comidas.id}>
