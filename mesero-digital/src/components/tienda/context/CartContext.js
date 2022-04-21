@@ -21,7 +21,7 @@ export const CarritoProvider = ({ children }) => {
       carrito.forEach(prod => {
           count += prod.Cantidad
       })
-    }
+    } 
 
     return (
         <CarritoContext.Provider value={{
