@@ -17,7 +17,7 @@ export const DataProvider = ({ children }) => {
 
             comidas,
             setComidas,
-            agregar,
+            agregar, 
             setAgregar,
             
         }}>
