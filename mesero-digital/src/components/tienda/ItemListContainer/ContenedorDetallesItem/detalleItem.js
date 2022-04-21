@@ -1,25 +1,39 @@
 import './DetallesItem.css'
 import { getComidasById } from '../ComidasMock'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import ItemListContainer from '../ItemListContainer'
-import { useParams } from 'react-router-dom'
-
+import { Link, useParams } from 'react-router-dom'
+import Item from './Item'
+import ItemCount from './ItemCount'
+import { Button, Spinner } from 'reactstrap'
+import BotonSinStock from '../../Botones/BotonAgregarCarrito'
+import { DataContext } from '../../context/Context'
 
 
 const Detalles = () => {
+
     const { id } = useParams()
 
-    const [comidas, setComidas] = useState()
-    const [item, setItem] = useState()
+    const {state, setState, comidas, setComidas} = useContext(DataContext);
+
     useEffect(async () => {
         await getComidasById(id).then(comida => {
             setComidas(comida)
 
         })
     }, [])
-    const esperando = (<div>Esperando</div>)
 
-    
+    const handleClick = (cant) => {
+      setState(true)
+      console.log('Recibiendo productos ')
+    }
+
+    const esperando = (
+    <Spinner>
+        Cargando...
+      </Spinner>)
+
+
     const dataC = (<div className='detalleItem'>
 
         <div id={comidas === undefined ? null : comidas.id} key={comidas === undefined ? null : comidas.id}>
@@ -33,13 +47,13 @@ const Detalles = () => {
                     <h1><strong>{comidas === undefined ? null : comidas.nombre}</strong></h1>
                     <h2>{comidas === undefined ? null : comidas.descripcion}</h2>
                     <div className='botonAgregar'>
-                        <h3 className="mb-2 text-muted" tag="h6">
+                        <h3 className="mb-2 text-muted" tag="h6" >
                             Disponible: {comidas === undefined ? null : comidas.stock}
                         </h3>
 
-                        <ItemListContainer onClick={() => { setItem(comidas === undefined ? null : comidas.id) }} />
+                        {state ? <Link to={'/carrito'}><Button color="success" outline> Ir al carrito</Button></Link> : comidas === undefined ?  null : <ItemCount onAdd={handleClick} stock={comidas.stock} initial={1}  />  }
                     </div>
-                    
+
                 </div>
             </div>
         </div>

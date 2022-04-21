@@ -3,12 +3,16 @@ import { useState } from "react";
 import { Button, ButtonGroup } from "reactstrap"
 
 
+
+
+
 const ItemCount = ({ onAdd, stock, initial }) => {
 const [count, setCount] = useState (initial)
 
 const clickeado = () => {
   onAdd(count)
 }
+
 
     return (
         <div className="cardComidas">
@@ -17,7 +21,6 @@ const clickeado = () => {
                     if (count > initial) {
                         setCount(count - 1);
                     }
-                    console.log(count)
                     if (count == initial) {
                         setCount(1);
                     }

@@ -1,23 +1,21 @@
 import React from "react"
-
 import './parallax.css';
 
 
-const ParallaxAdmin = () => {
+const Parallax404Error = () => {
 
     return (
         <>
             <div className="parallax1">
-                <div className="captionAdmin">
+                <div className="caption">
 
-                    <span className="borderAdmin">Pagina en desarrollo</span>
+                    <span className="border">404 ERROR</span>
                 </div>
 
             </div>
 
 
             <div className="section">
-                
                 <h2 className="border">Plataforma para restaurantes</h2>
             </div>
 
@@ -33,4 +31,4 @@ const ParallaxAdmin = () => {
 
 
 
-export default ParallaxAdmin
+export default Parallax404Error

@@ -2,8 +2,9 @@ import React from 'react';
 import { Navbar, NavbarBrand, NavbarToggler, Collapse, Nav, UncontrolledDropdown, DropdownToggle, DropdownItem, DropdownMenu } from 'reactstrap';
 import "./NavBar.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link } from 'react-router-dom';
-import CartWidget from '../../tienda/CartWidget'
+import BotonCarrito from '../../tienda/Carrito/BotonCarrito';
+
+
 
 const NavBar = () => {
 
@@ -53,7 +54,7 @@ const NavBar = () => {
                         
                     </Nav>
                 </Collapse>
-                <CartWidget/>
+                <BotonCarrito/>
             </Navbar>
         </header>
     )
