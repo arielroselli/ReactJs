@@ -19,6 +19,7 @@ const ParallaxCliente = () => {
 
             <div className="sectionCliente">
                 <BodyGeneral/>
+                
             </div>
 
 

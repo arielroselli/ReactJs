@@ -3,11 +3,12 @@ import { Navbar, NavbarBrand, NavbarToggler, Collapse, Nav, UncontrolledDropdown
 import "./NavBar.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import BotonCarrito from '../../tienda/Carrito/BotonCarrito';
-
+import 'animate.css';
 
 
 const NavBar = () => {
 
+   
     return (
 
         <header>
@@ -16,8 +17,8 @@ const NavBar = () => {
                 expand="xl"
                 fixed="top"
             >
-                <NavbarBrand href="/" className='linkHome'><img className='imgLogo' src='/assets/logo/pizza.png'/>
-                Mesero Digital
+                <NavbarBrand href="/" className='linkHome'><img className='imgLogo' src='/assets/logo/pizza.png' />
+                    Mesero Digital
                 </NavbarBrand>
                 <Collapse navbar>
                     <Nav
@@ -48,10 +49,10 @@ const NavBar = () => {
                                 </DropdownItem>
                             </DropdownMenu>
 
-                            
+
 
                         </UncontrolledDropdown>
-                        
+
                     </Nav>
                 </Collapse>
                 <BotonCarrito/>
@@ -59,7 +60,6 @@ const NavBar = () => {
         </header>
     )
 }
-
 
 
 export default NavBar;

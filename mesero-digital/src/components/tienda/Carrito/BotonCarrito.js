@@ -1,77 +1,32 @@
-import React, { useEffect, useContext, useState } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Table } from 'reactstrap';
-
+import { useContext } from 'react';
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { CarritoContext } from '../context/CartContext';
+import { Link } from 'react-router-dom';
+import { Button } from 'reactstrap';
 
 
 
 
 
 const BotonCarrito = () => {
-  const [abrir, setAbrir] = useState(false) 
-  const [cerrar, setCerrar] = useState(false) 
 
-
-  const {listaCarrito} = useContext(CarritoContext);
-
-
+    const {counter,toggleCanvas } = useContext(CarritoContext);
   
-    const AbrirModal = () => {
-        setAbrir({ abrir: true});
-    }
 
-    const CerrarModal = () => {
-        setCerrar({ cerrar: true});
-    }
+    return (
+        <>
+        <Button onClick={()=>{toggleCanvas()}}>
+        
+                   <ShoppingCartIcon/>{counter}
+                  
+               
+                 
+        </Button>
+        </>
+    )
 
-        return (
-            <>
-                <Button color="success" onClick={AbrirModal}>
-                    <ShoppingCartIcon /> 
-                    {listaCarrito}
-                </Button>
-
-
-                <Modal size='xl' isOpen={abrir}>
-
-                    <ModalHeader> Carrito de compras </ModalHeader>
-
-                    <ModalBody>
-                        <Table dark>
-                            <thead>
-                                <tr>
-
-                                    <th>Producto</th>
-                                    <th>Cantidad</th>
-                                    <th>Subtotal</th>
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-
-                                    <td><input type="checkbox" /* value={comida.id} *//></td>
-                                    <td> </td>
-                                    <td> </td>
-
-                                </tr>
-                            </tbody>
-                        </Table>
-
-                    </ModalBody>
-
-                    <ModalFooter>
-                        <Button>Terminar compra</Button>
-                        <Button onClick={CerrarModal}>Cerrar</Button>
-                    </ModalFooter>
-                </Modal>
-            </>
-        )
-    
 }
 
 export default BotonCarrito;
 
 
- 

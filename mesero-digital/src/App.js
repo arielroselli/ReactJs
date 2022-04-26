@@ -11,7 +11,9 @@ import ParallaxCliente from './components/parallax/ParallaxCliente';
 import ParallaxHome from './components/parallax/ParallaxHome';
 import Detalles from './components/tienda/ItemListContainer/ContenedorDetallesItem/DetalleItem';
 import { DataProvider } from './components/tienda/context/Context';
-import { CarritoProvider } from './components/tienda/context/CartContext';
+import { CarritoContext, CarritoProvider } from './components/tienda/context/CartContext';
+import ParallaxCarrito from './components/parallax/ParallaxCarrito';
+import CanvasCarrito from './components/tienda/Carrito/CanvasCarrito';
 
 
 const App = () => {
@@ -21,24 +23,22 @@ const App = () => {
 
     return (
         <>
-        <CarritoProvider>
-        <NavBar />
-        </CarritoProvider>
-        <DataProvider>
+            <CarritoProvider>
 
-            <BrowserRouter>
-                
-                <Routes>
-                    <Route exact path="/" element={<ParallaxHome />} />
-                    <Route exact path="/:categoria" element={<ParallaxCliente />} />
-                    <Route exact path="/Administracion" element={<ParallaxAdmin />} />
-                    <Route exact path="/detalles/:id" element={<Detalles />} />
-                    <Route path="*" element={<Parallax404Error />} />
-                </Routes>
-            </BrowserRouter>
+                <BrowserRouter>
+                    <NavBar />
+                    <CanvasCarrito/>
+                    <Routes>
+                        <Route path="/" element={<ParallaxHome />} />
+                        <Route path="/:categoria" element={<ParallaxCliente />} />
+                        <Route path="/Administracion" element={<ParallaxAdmin />} />
+                        <Route path="/carrito" element={<ParallaxCarrito />} />
+                        <Route path="/detalles/:id" element={<Detalles />} />
+                        <Route path="*" element={<Parallax404Error />} />
+                    </Routes>
+                </BrowserRouter>
+            </CarritoProvider>
             <Footer />
-
-        </DataProvider>
         </>
     )
 

@@ -1,31 +1,31 @@
 import './DetallesItem.css'
 import { getComidasById } from '../ComidasMock'
 import { useContext, useEffect, useState } from 'react'
-import ItemListContainer from '../ItemListContainer'
 import { Link, useParams } from 'react-router-dom'
-import Item from './Item'
 import ItemCount from './ItemCount'
 import { Button, Spinner } from 'reactstrap'
-import BotonSinStock from '../../Botones/BotonAgregarCarrito'
-import { DataContext } from '../../context/Context'
+import { CarritoContext } from '../../context/CartContext'
 
 
 const Detalles = () => {
 
     const { id } = useParams()
 
-    const {state, setState, comidas, setComidas} = useContext(DataContext);
+    const {agregar , addItem} = useContext(CarritoContext);
+
+    const [comida, setComida] = useState()
 
     useEffect(async () => {
-        await getComidasById(id).then(comida => {
-            setComidas(comida)
+        await getComidasById(id).then(dato => {
+            setComida(dato)
 
         })
     }, [])
 
     const handleClick = (cant) => {
-      setState(true)
-      console.log('Recibiendo productos ')
+
+      addItem({...comida, cantidad: cant})
+
     }
 
     const esperando = (
@@ -36,24 +36,24 @@ const Detalles = () => {
 
     const dataC = (<div className='detalleItem'>
 
-        <div id={comidas === undefined ? null : comidas.id} key={comidas === undefined ? null : comidas.id}>
+        <div id={comida === undefined ? null : comida.id} key={comida === undefined ? null : comida.id}>
 
             <div className='detallePadre' >
 
-                <img className='detalleImagen' src={comidas === undefined ? null : comidas.imagen} alt={comidas === undefined ? null : comidas.nombre} />
+                <img className='detalleImagen' src={comida === undefined ? null : comida.imagen} alt={comida === undefined ? null : comida.nombre} />
 
                 <div className='detalleTexto'>
 
-                    <h1><strong>{comidas === undefined ? null : comidas.nombre}</strong></h1>
-                    <h2>{comidas === undefined ? null : comidas.descripcion}</h2>
+                    <h1><strong>{comida === undefined ? null : comida.nombre}</strong></h1>
+                    <h2>{comida === undefined ? null : comida.descripcion}</h2>
                     <div className='botonAgregar'>
                         <h3 className="mb-2 text-muted" tag="h6" >
-                            Disponible: {comidas === undefined ? null : comidas.stock}
+                            Disponible: {comida === undefined ? null : comida.stock}
                         </h3>
 
-                        {state ? <Link to={'/carrito'}><Button color="success" outline> Ir al carrito</Button></Link> : comidas === undefined ?  null : <ItemCount onAdd={handleClick} stock={comidas.stock} initial={1}  />  }
+                        {agregar ? <Link to={'/carrito'}><Button color="success" outline> Ir al carrito</Button></Link> : comida === undefined ?  null : <ItemCount onAdd={handleClick} stock={comida.stock} initial={1}  />  }
                     </div>
-
+                
                 </div>
             </div>
         </div>
@@ -61,7 +61,7 @@ const Detalles = () => {
     </div>)
     return (
         <>
-            {comidas ? (dataC) : (esperando)}
+            {comida ? (dataC) : (esperando)}
         </>)
 }
 

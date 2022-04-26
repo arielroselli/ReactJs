@@ -4,22 +4,23 @@ import { Card, CardBody, CardSubtitle, CardTitle, CardImg } from 'reactstrap';
 import ItemListContainer from '../ItemListContainer';
 import { Link } from 'react-router-dom';
 import ItemCount from './ItemCount';
-import { DataContext } from '../../context/Context';
+
+import { CarritoContext } from '../../context/CartContext';
 
 
 const Item = ({ data }) => {
 
-    const {setListaCarrito} = useContext(DataContext);
+    const {addItem} = useContext(CarritoContext);
     const [plato, setPlato] = useState(data)
-    const [state, setState] = useState(false)
+
 
     useEffect(() => {
         setPlato(data)
     }, [data])
 
     const handleClick = (cant) => {
-        setState(true)
-        setListaCarrito({...data, cantidad: cant})
+
+        addItem({...plato, cantidad: cant})
 
     }
     return (
@@ -43,7 +44,7 @@ const Item = ({ data }) => {
 
                         <ItemListContainer className="itemCount" onClick={() => { setPlato(plato ? plato.id : null) }} />
 
-                        {state ?  null  : <ItemCount onAdd={handleClick} stock={plato.stock} initial={1}  /> }
+                         <ItemCount onAdd={handleClick} stock={plato.stock} initial={1}  /> 
 
 
                     </CardBody>
