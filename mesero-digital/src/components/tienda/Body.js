@@ -3,11 +3,11 @@ import { useParams } from "react-router-dom";
 
 const BodyGeneral = () => {
 
-const {categoria} = useParams()
+
 
   return (
     <>
-      <ItemListContainer cat={categoria}/>
+      <ItemListContainer/>
 
     </>
   )

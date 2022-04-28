@@ -1,24 +1,20 @@
-
-import { useEffect, useState } from 'react'
 import Item from './Item'
 
-const ItemList = ({lista}) => {
-    
-    const [comidas, setComidas] = useState([])
-    useEffect(() => {
+const ItemList = ({ lista }) => {
 
-            setComidas(lista)
+    const comidas = lista
+    if (comidas != []) {
+        return (
+            <div className='cardList'>
 
-    }, [lista])
+                {comidas.map(plato =>
+                    <Item data={plato} key={"item" + plato.id} />
+                )}
+            </div>
+        )
+    }
 
-    return (
-        <div className='cardList'>
 
-            {comidas.map(plato =>
-                <Item data={plato} key={"item"+plato.id}/>
-            )}
-        </div>
-    )
 }
 
 

@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getComidas } from '../ItemListContainer/ComidasMock'
 import ItemList from "./ContenedorDetallesItem/ItemList";
 
 
-
-const ItemListContainer = ({cat}) => {
+const ItemListContainer = () => {
     const [count, setCount] = useState(1);
-    
+
+
     const onAdd = (condition) => {
         if (condition === '-') {
             setCount(count - 1);
@@ -17,22 +17,24 @@ const ItemListContainer = ({cat}) => {
 
     };
 
-    const [lista, setLista] = useState([])
+    const [listado, setListado] = useState([])
 
-    useEffect(async () => {
-        if ( cat== "tienda")
-        {await getComidas().then(datos => {
-            setLista(datos)
+    useEffect(() => {
 
-        })}
-    }, [cat])
+        getComidas().then(datos => {
+            setListado(datos)
+            console.log(datos)
+        })
+
+
+    }, [])
 
 
     return (
         <div className="contenedorPedidos">
             <div className="itemComida">
                 <div className="contador">
-                    <ItemList lista={lista}/>
+                    <ItemList lista={listado} />
                 </div>
             </div>
 

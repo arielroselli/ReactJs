@@ -11,12 +11,7 @@ import { CarritoContext } from '../../context/CartContext';
 const Item = ({ data }) => {
 
     const {addItem} = useContext(CarritoContext);
-    const [plato, setPlato] = useState(data)
-
-
-    useEffect(() => {
-        setPlato(data)
-    }, [data])
+    const plato = data
 
     const handleClick = (cant) => {
 
@@ -42,7 +37,6 @@ const Item = ({ data }) => {
 
                         <Link to={`/detalles/${plato.id}`} className='btn btn-dark verDetalles'>Ver detalles</Link>
 
-                        <ItemListContainer className="itemCount" onClick={() => { setPlato(plato ? plato.id : null) }} />
 
                          <ItemCount onAdd={handleClick} stock={plato.stock} initial={1}  /> 
 
