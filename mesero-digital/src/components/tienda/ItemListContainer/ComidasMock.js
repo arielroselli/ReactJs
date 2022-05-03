@@ -21,8 +21,10 @@ export const getComidas = async () => {
   })
 };
 
-export const getComidasById = (id) => {}
+export const getComidasById = (id) => {
+
   return new Promise(resultado => {
+    
     const database = getFirestore();
     let documento = doc(database, "comidas", id)
     getDoc(documento).then(item => {

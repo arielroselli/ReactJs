@@ -1,8 +1,9 @@
 import ReactDOM from 'react-dom';
 import './index.css';
-import Restaurante from './App';
 import App from './App'
 import { initializeApp } from "firebase/app";
+import { getFirestore } from 'firebase/firestore';
+
 
 
 
@@ -15,11 +16,10 @@ const firebaseConfig = {
   appId: "1:127012587845:web:c1b6e10f59cbafc051162c"
 };
 
-
-initializeApp(firebaseConfig);
-
+const app = initializeApp(firebaseConfig);
 
 
+export const FirestoreDb = getFirestore(app)
 
 
 

@@ -1,7 +1,6 @@
 
-import { useContext, useEffect, useState } from 'react'
+import { useContext } from 'react'
 import { Card, CardBody, CardSubtitle, CardTitle, CardImg } from 'reactstrap';
-import ItemListContainer from '../ItemListContainer';
 import { Link } from 'react-router-dom';
 import ItemCount from './ItemCount';
 

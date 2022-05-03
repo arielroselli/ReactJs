@@ -1,14 +1,88 @@
-import { useContext } from "react";
-import { Button } from "reactstrap"
+import { useContext, useState } from "react";
 import { CarritoContext } from "../context/CartContext";
 import "./carrito.css";
 import {Link} from "react-router-dom"
+import { addDoc, collection, documentId, getDocs, query, where, writeBatch } from "firebase/firestore";
+import { FirestoreDb } from "../../../"
 
 
 const CanvasCarrito = () => {
 
     const {removeItem, borrarTodo, carrito, counter, toggleCanvas } = useContext(CarritoContext);
 
+    
+  const [cargando, setCargando] = useState(false)
+
+
+  const crearOrden = () => {
+
+    setCargando(true)
+
+    const datosOrden = {
+      items: carrito,
+      comprador: {
+        nombre: 'Ariel Roselli',
+        telefono: '3434345363',
+        email: 'arieelroselli@gmail.com'
+      },
+      total: 'total'
+    }
+
+
+    const ids = carrito.map(item => item.id)
+
+    const batch = writeBatch(FirestoreDb)
+
+    const collectionRef = collection(FirestoreDb, 'comidas')
+
+    const sinStock = []
+
+
+    getDocs(query(collectionRef, where(documentId(), 'in', ids)))
+
+      .then(respuesta => {
+        respuesta.docs.forEach(doc => {
+          const dataDoc = doc.data()
+
+          const itemCantidad = carrito.find(item => item.id === doc.id)?.cantidad
+
+          if (dataDoc.stock >= itemCantidad) {
+            batch.update(doc.ref, { stock: dataDoc.stock - itemCantidad })
+          } else {
+            sinStock.push({ id: doc.id, dataDoc })
+          }
+        })
+
+      }).then(() => {
+
+        if (sinStock.length === 0) {
+          const collectionRef = collection(FirestoreDb, 'ordenes')
+          return addDoc(collectionRef, datosOrden)
+        } else {
+          return Promise.reject({ nombre: 'sinStockError', producto: sinStock })
+        }
+
+      }).then(({ id }) => {
+
+        batch.commit()
+        console.log(`El id de la orden es ${id}`)
+      }).catch(error => {
+
+        console.log(error)
+      }).finally(() => {
+
+        setCargando(false)
+      })
+
+  }
+
+  if (cargando) {
+    return <h1>Se esta generando orden</h1>
+  }
+
+
+
+   
 
 
     return (
@@ -73,7 +147,8 @@ const CanvasCarrito = () => {
                 </div>
                 <div className="foot mt-auto mb-4 footerCarrito">
                     <button className="btn btn-danger ms-3"  onClick={()=>{borrarTodo()}} ><svg xmlns="http://www.w3.org/2000/svg" fill="white" width="24" height="24" viewBox="0 0 24 24"><path d="M3 6v18h18v-18h-18zm5 14c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4-18v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712z"/></svg></button>
-                    <button className="col btn btn-success ">Finish Buying</button>
+                 <button className="col btn btn-success " onClick={() => crearOrden()}>Enviar pedido</button> 
+
                 </div>
                 </>
 
