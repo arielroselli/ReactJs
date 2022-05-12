@@ -5,6 +5,7 @@ import { Link, useParams } from 'react-router-dom'
 import ItemCount from './ItemCount'
 import { Button, Spinner } from 'reactstrap'
 import { CarritoContext } from '../../context/CartContext'
+import Cargando from './assets/spinner/spinner'
 
 
 const Detalles = () => {
@@ -28,10 +29,7 @@ const Detalles = () => {
 
     }
 
-    const esperando = (
-    <Spinner>
-        Cargando...
-      </Spinner>)
+    const esperando = (<Cargando/>)
 
 
     const dataC = (<div className='detalleItem'>
