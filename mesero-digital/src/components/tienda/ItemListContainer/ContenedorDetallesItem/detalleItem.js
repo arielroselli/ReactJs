@@ -20,7 +20,7 @@ const Detalles = () => {
         await getComidasById(id).then(dato => {
             setComida(dato)
 
-        })
+        }),4000
     }, [])
 
     const handleClick = (cant) => {
