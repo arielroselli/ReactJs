@@ -1,0 +1,59 @@
+.formularioIngreso{
+    padding: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-height: 600px;
+    text-align: center;
+    align-items: center;
+}
+.h1Login{
+    font-weight: 900;
+    letter-spacing: 10px;
+}
+
+.h4Login{
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: 500;
+    letter-spacing: 3px;
+    margin-bottom: 40px;
+}
+.input1{
+    min-width: 80%;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5px;
+}
+
+.botonSubmit{
+    padding: 10px;
+    display: flex;
+    margin: auto;
+    background-color: rgb(41, 41, 41);
+    border: rgb(0, 0, 0) 1px solid;
+    justify-content: center;
+    font-weight: 750;
+    letter-spacing: 2px;
+    color: white;
+    margin-top: 30px;
+    
+}
+
+.linkSubmit{
+    text-align: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.error {
+    color: red;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(255, 255, 255, 0.603);
+    border-radius: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}

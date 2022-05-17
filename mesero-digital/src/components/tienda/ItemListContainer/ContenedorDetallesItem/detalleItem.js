@@ -2,10 +2,10 @@ import './DetallesItem.css'
 import { getComidasById } from '../ComidasMock'
 import { useContext, useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import ItemCount from './ItemCount'
-import { Button, Spinner } from 'reactstrap'
+import ItemCount from './ItemContador'
+import { Button} from 'reactstrap'
 import { CarritoContext } from '../../context/CartContext'
-import Cargando from './assets/spinner/spinner'
+import Cargando from './assets/spinner/Spinner'
 
 
 const Detalles = () => {
@@ -20,7 +20,7 @@ const Detalles = () => {
         await getComidasById(id).then(dato => {
             setComida(dato)
 
-        }),4000
+        })
     }, [])
 
     const handleClick = (cant) => {
@@ -45,7 +45,9 @@ const Detalles = () => {
                     <h1><strong>{comida === undefined ? null : comida.nombre}</strong></h1>
                     <h2>{comida === undefined ? null : comida.descripcion}</h2>
                     <div className='botonAgregar'>
+                        <h2>Precio: ${comida === undefined ? null : comida.precio}</h2>
                         <h3 className="mb-2 text-muted" tag="h6" >
+
                             Disponible: {comida === undefined ? null : comida.stock}
                         </h3>
 

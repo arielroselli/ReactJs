@@ -1,21 +1,10 @@
 import { useEffect, useState } from "react";
-import { getComidas } from '../ItemListContainer/ComidasMock'
-import ItemList from "./ContenedorDetallesItem/ItemList";
+import { getComidas } from './ComidasMock'
+import ItemList from "./ContenedorDetallesItem/ItemLista";
 
 
 const ItemListContainer = () => {
-    const [count, setCount] = useState(1);
 
-
-    const onAdd = (condition) => {
-        if (condition === '-') {
-            setCount(count - 1);
-        }
-        if (condition === '+') {
-            setCount(count + 1);
-        }
-
-    };
 
     const [listado, setListado] = useState([])
 
@@ -23,7 +12,6 @@ const ItemListContainer = () => {
 
         getComidas().then(datos => {
             setListado(datos)
-            console.log(datos)
         })
 
 

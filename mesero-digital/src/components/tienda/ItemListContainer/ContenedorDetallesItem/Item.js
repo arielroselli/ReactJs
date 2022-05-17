@@ -2,7 +2,7 @@
 import { useContext } from 'react'
 import { Card, CardBody, CardSubtitle, CardTitle, CardImg } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import ItemCount from './ItemCount';
+import ItemCount from './ItemContador';
 
 import { CarritoContext } from '../../context/CartContext';
 

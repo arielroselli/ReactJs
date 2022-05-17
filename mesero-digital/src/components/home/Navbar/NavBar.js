@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Navbar, NavbarBrand, NavbarToggler, Collapse, Nav, UncontrolledDropdown, DropdownToggle, DropdownItem, DropdownMenu } from 'reactstrap';
 import "./NavBar.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import BotonCarrito from '../../tienda/Carrito/BotonCarrito';
 import 'animate.css';
+import Formulario from '../../tienda/Login/Login';
+import { UserContext } from '../../tienda/context/UserContext';
 
 
 const NavBar = () => {
 
-   
+const {user} = useContext(UserContext)
+
     return (
 
         <header>
@@ -45,7 +48,7 @@ const NavBar = () => {
                                 <DropdownItem divider />
 
                                 <DropdownItem>
-                                    Ayuda
+                                    {user ? user:null}
                                 </DropdownItem>
                             </DropdownMenu>
 

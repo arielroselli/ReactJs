@@ -1,4 +1,5 @@
 import React from "react"
+import PanelPedidos from "../restaurante/pedidos";
 
 import './parallax.css';
 
@@ -9,15 +10,15 @@ const ParallaxAdmin = () => {
         <>
             <div className="parallax1">
                 <div className="captionAdmin">
+                    <PanelPedidos />
 
-                    <span className="borderAdmin">Pagina en desarrollo</span>
                 </div>
 
             </div>
 
 
             <div className="section">
-                
+
                 <h2 className="border">Plataforma para restaurantes</h2>
             </div>
 

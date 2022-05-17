@@ -3,7 +3,7 @@ import Item from './Item'
 const ItemList = ({ lista }) => {
 
     const comidas = lista
-    if (comidas != []) {
+    if (comidas !== []) {
         return (
             <div className='cardList'>
 

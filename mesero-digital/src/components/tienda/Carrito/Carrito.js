@@ -1,11 +1,12 @@
-import { useContext, useState } from "react";
+/* import { useContext, useState } from "react";
 import { CarritoContext } from "../context/CartContext";
 import './carrito.css'
 
 
 const Carrito = () => {
 
-  const { carrito } = useContext(CarritoContext);
+  const { carrito, subtotal } = useContext(CarritoContext);
+
   return (
 
 
@@ -19,7 +20,7 @@ const Carrito = () => {
 
           <th>{item.nombre}</th>
           <tbody>{item.cantidad}</tbody>
-          <tfoot>{(item.precio * item.cantidad)}</tfoot>
+          <tfoot>{subtotal}</tfoot>
           
 
 
@@ -33,4 +34,4 @@ const Carrito = () => {
   )
 }
 
-export default Carrito
+export default Carrito */

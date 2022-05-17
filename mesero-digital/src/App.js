@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './index.css';
@@ -10,10 +9,10 @@ import ParallaxAdmin from './components/parallax/ParallaxAdmin'
 import ParallaxCliente from './components/parallax/ParallaxCliente';
 import ParallaxHome from './components/parallax/ParallaxHome';
 import Detalles from './components/tienda/ItemListContainer/ContenedorDetallesItem/DetalleItem';
-import { DataProvider } from './components/tienda/context/Context';
-import { CarritoContext, CarritoProvider } from './components/tienda/context/CartContext';
+import { CarritoProvider } from './components/tienda/context/CartContext';
 import ParallaxCarrito from './components/parallax/ParallaxCarrito';
 import CanvasCarrito from './components/tienda/Carrito/CanvasCarrito';
+import {UserProvider} from './components/tienda/context/UserContext';
 
 
 const App = () => {
@@ -25,18 +24,23 @@ const App = () => {
         <>
             <CarritoProvider>
 
-                <BrowserRouter>
-                    <NavBar />
-                    <CanvasCarrito/>
-                    <Routes>
-                        <Route path="/" element={<ParallaxHome />} />
-                        <Route path="/:categoria" element={<ParallaxCliente />} />
-                        <Route path="/Administracion" element={<ParallaxAdmin />} />
-                        <Route path="/carrito" element={<ParallaxCarrito />} />
-                        <Route path="/detalles/:id" element={<Detalles />} />
-                        <Route path="*" element={<Parallax404Error />} />
-                    </Routes>
-                </BrowserRouter>
+                <UserProvider>
+                    <BrowserRouter>
+
+                        <NavBar />
+                        <CanvasCarrito />
+
+                        <Routes>
+                            <Route path="/" element={<ParallaxHome />} />
+                            <Route path="/:categoria" element={<ParallaxCliente />} />
+                            <Route path="/Administracion" element={<ParallaxAdmin />} />
+                            <Route path="/carrito" element={<ParallaxCarrito />} />
+                            <Route path="/detalles/:id" element={<Detalles />} />
+                            <Route path="*" element={<Parallax404Error />} />
+                        </Routes>
+                    </BrowserRouter>
+                </UserProvider>
+
             </CarritoProvider>
             <Footer />
         </>

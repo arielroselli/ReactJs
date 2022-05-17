@@ -1,6 +1,6 @@
 import React from "react"
 import './parallax.css';
-import BodyGeneral from "../tienda/Body";
+import BodyGeneral from "../tienda/ListaProductos";
 
 
 const ParallaxCliente = () => {
@@ -18,7 +18,8 @@ const ParallaxCliente = () => {
 
 
             <div className="sectionCliente">
-                <BodyGeneral/>
+                <div className="col-6 buscador"></div>
+                <BodyGeneral className="col-6"/>
                 
             </div>
 

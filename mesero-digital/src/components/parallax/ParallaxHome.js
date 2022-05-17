@@ -1,28 +1,35 @@
 import React from "react"
+import Formulario from "../tienda/Login/Login";
 import './parallax.css';
-
 
 const ParallaxHome = () => {
 
     return (
         <>
             <div className="parallax1">
-                <div className="caption">
-
-                    <span className="border">Mesero Digital</span>
-                </div>
+                
+                
+                    <Formulario/>
+                
 
             </div>
 
 
             <div className="section">
-                <h2 className="border">Plataforma para restaurantes</h2>
+                <div className="border">
+                    <h1>Plataforma para restaurantes</h1>
+                </div>
+                
+                
             </div>
 
 
             <div className="parallax2">
                 <div className="caption">
-                    <h3 className="border">Texto para rellenar mas adelante explicando el funcionamiento de la plataforma</h3>
+                    <h3 className="border">
+                        En esta plataforma, hacer tu orden de comida desde la mesa. No es necesario hablar 
+                        con el mozo. Simplemente envia tu pedido, y esperala.
+                    </h3>
                 </div>
             </div>
         </>

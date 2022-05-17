@@ -1,44 +1,22 @@
-import { useContext, useEffect, useState } from "react";
-import { CarritoContext } from "../context/CartContext";
-import "./carrito.css";
-import {Link} from "react-router-dom"
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { CarritoContext } from '../tienda/context/CartContext';
+import './administracion.css'
 
 
-const CanvasCarrito = () => {
-  const {carrito, removeItem, borrarTodo , counter, toggleCanvas, subtotal, crearOrden } = useContext(CarritoContext);
+const PanelPedidos = () => {
 
-  const listado = carrito
-
-  const[ total, setTotal ] = useState(0)
-
-  const handleEvent= (event) => {
-      let aux = 0;
-      listado.forEach(element => {
-          aux +=parseFloat(element.cantidad * element.precio)
-      });
-    setTotal(aux)   
-  }
+  const {removeItem, borrarTodo, carrito, counter, subtotal, total, crearOrden } = useContext(CarritoContext);
 
 
-useEffect(() => {
-    handleEvent()
-}, [carrito]);
 
-    return (
-        <>
-        <div id="canvasCarrito">
-            <div className="canvasWhite">
-                <div className="header">
 
-                    <h1>Carrito</h1> 
-                    <button className="btn" onClick={toggleCanvas}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"/></svg>
-                    </button>
+  return(
+    <div className="panelPedidos">
+ 
+                    <h1>Lista de pedidos</h1> 
 
-                </div>
-                
-                {counter === 0?<h3 className="mx-auto">Carrito Vacio</h3>:
-
+                {counter === 0?<h3 className="mx-auto">Sin pedidos</h3>:
                 <>
                 <div className="list">
                     <div className="d-flex row">
@@ -51,9 +29,9 @@ useEffect(() => {
 
                                 <hr className="mx-auto" style={{width:"90%",color:"rgba(0, 0, 0, 0.2)"}}/>
                         {
-                        listado.map(item =>
+                        carrito.map(item =>
 
-                            
+                            <>
                                 <div className="row container" key={"cart"+item.id} style={{position:"relative"}}>
                                     <div className="col-3 my-auto text-center text-nowrap">{item.nombre}</div>
                                     <div className="col-5 my-auto text-center">
@@ -70,10 +48,10 @@ useEffect(() => {
 
                                     {/* DETALLE */}
                                         <Link className="linkDetalle" to={`/detalles/${item.id}`}>Detalles</Link>
-                                
+                                </div>
 
                                 <hr className="mx-auto" style={{width:"90%",color:"rgba(0, 0, 0, 0.2)"}}/>
-                            </div>
+                            </>
                         )
                         }
                     </div>
@@ -81,7 +59,7 @@ useEffect(() => {
                 <div className="row ">
                         <div className="col-3 text-center my-auto">Total</div>
                         <div className="col-5 text-center my-auto"></div>
-                        <div className="col-3 text-end my-auto">${total}</div>
+                        <div className="col-3 text-end my-auto">${(carrito.length * subtotal)}</div>
                         <div className="col-1 text-center my-auto"></div>
                 </div>
                 <div className="foot mt-auto mb-4 footerCarrito">
@@ -93,14 +71,15 @@ useEffect(() => {
 
                 }
 
-            </div>
+            
                    
-        </div> 
-        <div id="shadowBack" onClick={toggleCanvas}></div>     
-    </>
-    )
+        
+            
+   
+    </div>
+  )
 }
 
 
-export default CanvasCarrito
 
+export default PanelPedidos

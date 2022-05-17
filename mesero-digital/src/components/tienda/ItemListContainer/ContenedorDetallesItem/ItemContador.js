@@ -21,7 +21,7 @@ const clickeado = () => {
                     if (count > initial) {
                         setCount(count - 1);
                     }
-                    if (count == initial) {
+                    if (count === initial) {
                         setCount(1);
                     }
                 }} className="botonCard" color="success">
@@ -34,7 +34,7 @@ const clickeado = () => {
                     if (count < stock) {
                         setCount(count + 1)
                     }
-                    if (count == stock) {
+                    if (count === stock) {
                         setCount(stock);
                     }
                 }} className="botonCard" color="success">

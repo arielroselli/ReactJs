@@ -14,7 +14,8 @@ const ParallaxCarrito = () => {
         <>
             <div className="parallax12">
                 <div className="caption">
-                    <Carrito />
+                    <Carrito/>
+
                 </div>
 
             </div>
