@@ -77,4 +77,9 @@
 }
 
 
-/********************************************* HOVER IMAGEN CARD*/
+.h1Pedido{
+    margin-top: 40px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    letter-spacing: 3px;
+    display: flex;
+}
