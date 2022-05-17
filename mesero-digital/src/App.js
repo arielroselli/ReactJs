@@ -4,10 +4,10 @@ import './index.css';
 import NavBar from './components/home/Navbar/NavBar'
 import Footer from './components/home/footer/Footer';
 import { BrowserRouter, Router, Route, Routes } from 'react-router-dom'
-import Parallax404Error from './components/parallax/Parallax404Error'
-import ParallaxAdmin from './components/parallax/Admin'
-import ParallaxCliente from './components/parallax/Cliente';
-import ParallaxHome from './components/parallax/Home';
+import Parallax404Error from './components/pages/Parallax404Error'
+import ParallaxAdmin from './components/pages/Admin'
+import ParallaxCliente from './components/pages/Cliente';
+import ParallaxHome from './components/pages/Home';
 import Detalles from './components/tienda/ItemListContainer/ContenedorDetallesItem/DetalleItem';
 import { CarritoProvider } from './components/tienda/context/CartContext';
 import CanvasCarrito from './components/tienda/Carrito/CanvasCarrito';
