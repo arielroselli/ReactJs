@@ -2,13 +2,13 @@
 
 Este proyecto fue creado exclusívamente para el curso de **_React JS_** de **CODERHOUSE**
 
-### Recreativo F.C.
+### Mesero Digital
 
 Este proyecto esta inspirado para el reemplazo de los meseros en restaurantes. 
 
 Es un estilo de tienda online la cual tiene una parte cliente, y una parte restaurante.
 
-# La parte Cliente
+## La parte Cliente
 
 El cliente hace su pedido de todo lo que va a consumir en la noche, lo envia al restaurante y se procesa su pedido. El restaurante hace la orden y solo una persona alcanza su pedido a la mesa.
 
@@ -16,12 +16,12 @@ La idea del proyecto es que todo se maneje desde una tablet sobre la mesa de cad
 
 El pago se realiza una vez que el cliente da por finalizada la cena.
 
-### CODE
+## CODE
 
-## El codigo se divide en:
+### El codigo se divide en:
 
-# Cliente
-# Restaurante(en proceso)
+#### Cliente
+#### Restaurante(en proceso)
 
 - Seccion pages: estan todas las pages visibles por el visitante
   
@@ -35,7 +35,7 @@ El pago se realiza una vez que el cliente da por finalizada la cena.
         pedido
 *       Login: Sesion para iniciar la cena y hacer los pedidos
 
-- Seccion home: Se ve el Navbar y footer
+*       Seccion home: Se ve el Navbar y footer
 
 
 ### Deployed
