@@ -1,18 +1,14 @@
 import { createContext, useEffect, useState } from "react";
-import { addDoc, collection, documentId, getDocs, query, where, writeBatch } from "firebase/firestore";
-import { FirestoreDb } from "../../../";
-
-
 
 
 export const CarritoContext = createContext();
 export const CarritoProvider = ({ children }) => {
 
-
   const [carrito, setCarrito] = useState([])
   const [counter, setCounter] = useState(0)
   const [cargando, setCargando] = useState(false)
 
+ 
   useEffect(() => {
     setCounter(carrito.length)
   }, [carrito]);
@@ -65,11 +61,6 @@ export const CarritoProvider = ({ children }) => {
     setCarrito([])
   }
 
-  const carritoDuplicado = () => {
-
-
-
-  }
 
   const toggleCanvas = () => {
     let canvas = document.getElementById("canvasCarrito")
@@ -87,69 +78,6 @@ export const CarritoProvider = ({ children }) => {
 
   
 
-  const crearOrden = () => {
-
-    setCargando(true)
-
-    const datosOrden = {
-      items: carrito,
-      comprador: {
-        nombre: 'Ariel Roselli',
-        telefono: '3434345363',
-        email: 'arieelroselli@gmail.com'
-      },
-      total: 'total'
-    }
-
-
-    const ids = carrito.map(item => item.id)
-
-    const batch = writeBatch(FirestoreDb)
-
-    const collectionRef = collection(FirestoreDb, 'comidas')
-
-    const sinStock = []
-
-
-    getDocs(query(collectionRef, where(documentId(), 'in', ids)))
-
-      .then(respuesta => {
-        respuesta.docs.forEach(doc => {
-          const dataDoc = doc.data()
-
-          const itemCantidad = carrito.find(item => item.id === doc.id)?.cantidad
-
-          if (dataDoc.stock >= itemCantidad) {
-            batch.update(doc.ref, { stock: dataDoc.stock - itemCantidad })
-          } else {
-            sinStock.push({ id: doc.id, dataDoc })
-          }
-        })
-
-      }).then(() => {
-
-        if (sinStock.length === 0) {
-          const collectionRef = collection(FirestoreDb, 'ordenes')
-          return addDoc(collectionRef, datosOrden)
-        } else {
-          return Promise.reject({ nombre: 'sinStockError', producto: sinStock })
-        }
-
-      }).then(({ id }) => {
-
-        batch.commit()
-        console.log(`El id de la orden es ${id}`)
-
-
-      }).catch(error => {
-
-        console.log(error)
-      }).finally(() => {
-
-        setCargando(false)
-      })
-
-  }
 
   return (
     <CarritoContext.Provider value={{
@@ -160,7 +88,8 @@ export const CarritoProvider = ({ children }) => {
       borrarTodo,
       toggleCanvas,
       subtotal,
-      crearOrden
+      cargando,
+      setCargando
     }}>
 
       {children}

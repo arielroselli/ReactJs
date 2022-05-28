@@ -1,15 +1,18 @@
 
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { Card, CardBody, CardSubtitle, CardTitle, CardImg } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import ItemCount from './ItemContador';
 
 import { CarritoContext } from '../../context/CartContext';
+import Cargando from './assets/spinner/Spinner';
 
 
 const Item = ({ data }) => {
 
-    const {addItem} = useContext(CarritoContext);
+    
+
+    const {addItem, cargando, setCargando} = useContext(CarritoContext);
     const plato = data
 
     const handleClick = (cant) => {
@@ -17,6 +20,16 @@ const Item = ({ data }) => {
         addItem({...plato, cantidad: cant})
 
     }
+
+
+
+    if (cargando){
+        return (
+            <Cargando/>
+        )
+    }
+    else{
+
     return (
         <div className='cardList'>
 
@@ -46,6 +59,7 @@ const Item = ({ data }) => {
 
         </div>
     )
+}
 }
 
 

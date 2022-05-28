@@ -4,13 +4,21 @@ import './login.css'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
+import { CarritoContext } from "../context/CartContext";
 
 
 const Formulario = () => {
 
-const {user, setUser} = useContext(UserContext)
-
+const {setUser, setCorreo} = useContext(UserContext)
+const {cargando, setCargando} = useContext(CarritoContext);
     const navigate = useNavigate();
+
+    const cambiarEstado = () => {
+        setCargando(true);
+        setTimeout(()=>{
+            setCargando(false);
+        },5000);
+      }
 
     return (<>
         <Formik
@@ -41,7 +49,9 @@ const {user, setUser} = useContext(UserContext)
             onSubmit={(valores, { resetForm }) => {
                 resetForm();
                 setUser(valores.nombre)
+                setCorreo(valores.email)
                 navigate('/tienda');
+                cambiarEstado()
                 
 
             }}>

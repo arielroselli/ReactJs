@@ -38,6 +38,9 @@ El pago se realiza una vez que el cliente da por finalizada la cena.
 *       Seccion home: Se ve el Navbar y footer
 
 
+![ezgif-5-8e9019ecc9](https://user-images.githubusercontent.com/92234766/168931849-eed033ff-35c0-4069-87a6-494f4a7cf27f.gif)
+
+
 ### Deployed
 
 Puedes encontrar el proyecto en el siguiente link https://meserodigital-pdadg4ikl-arielroselli.vercel.app/

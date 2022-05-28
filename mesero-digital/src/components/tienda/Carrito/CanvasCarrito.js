@@ -1,15 +1,22 @@
 import { useContext, useEffect, useState } from "react";
 import { CarritoContext } from "../context/CartContext";
+import { addDoc, collection, documentId, getDocs, query, where, writeBatch } from "firebase/firestore";
+import { FirestoreDb } from "../../../";
+
 import "./carrito.css";
 import {Link} from "react-router-dom"
+import { UserContext } from "../context/UserContext";
 
 
 const CanvasCarrito = () => {
-  const {carrito, removeItem, borrarTodo , counter, toggleCanvas, subtotal, crearOrden } = useContext(CarritoContext);
+  const {carrito, removeItem, borrarTodo , counter, toggleCanvas, subtotal } = useContext(CarritoContext);
+
+  const {user, correo} = useContext(UserContext)
 
   const listado = carrito
 
   const[ total, setTotal ] = useState(0)
+  const [cargando, setCargando] = useState(false)
 
   const handleEvent= (event) => {
       let aux = 0;
@@ -23,6 +30,71 @@ const CanvasCarrito = () => {
 useEffect(() => {
     handleEvent()
 }, [carrito]);
+
+
+const crearOrden = () => {
+
+     setCargando(true)
+ 
+     const datosOrden = {
+       items: carrito,
+       comprador: {
+         nombre: user,
+         email: correo
+       },
+       total: 'total',
+       fecha: new Date() 
+     }
+ 
+ 
+     const ids = carrito.map(item => item.id)
+ 
+     const batch = writeBatch(FirestoreDb)
+ 
+     const collectionRef = collection(FirestoreDb, 'comidas')
+ 
+     const sinStock = []
+ 
+ 
+     getDocs(query(collectionRef, where(documentId(), 'in', ids)))
+ 
+       .then(respuesta => {
+         respuesta.docs.forEach(doc => {
+           const dataDoc = doc.data()
+ 
+           const itemCantidad = carrito.find(item => item.id === doc.id)?.cantidad
+ 
+           if (dataDoc.stock >= itemCantidad) {
+             batch.update(doc.ref, { stock: dataDoc.stock - itemCantidad })
+           } else {
+             sinStock.push({ id: doc.id, dataDoc })
+           }
+         })
+ 
+       }).then(() => {
+ 
+         if (sinStock.length === 0) {
+           const collectionRef = collection(FirestoreDb, 'ordenes')
+           return addDoc(collectionRef, datosOrden)
+         } else {
+           return Promise.reject({ nombre: 'sinStockError', producto: sinStock })
+         }
+ 
+       }).then(({ id }) => {
+ 
+         batch.commit()
+         console.log(`El id de la orden es ${id}`)
+ 
+ 
+       }).catch(error => {
+ 
+         console.log(error)
+       }).finally(() => {
+ 
+         setCargando(false)
+       })
+ 
+   }
 
     return (
         <>

@@ -12,7 +12,7 @@ const Detalles = () => {
 
     const { id } = useParams()
 
-    const {agregar , addItem} = useContext(CarritoContext);
+    const {agregar , addItem, cargando, setCargando} = useContext(CarritoContext);
 
     const [comida, setComida] = useState()
 
@@ -59,10 +59,19 @@ const Detalles = () => {
         </div>
 
     </div>)
+
+    if (cargando){
+        return (
+            <Cargando/>
+        )
+    }
+    else{
+
     return (
         <>
             {comida ? (dataC) : (esperando)}
         </>)
+    }
 }
 
 

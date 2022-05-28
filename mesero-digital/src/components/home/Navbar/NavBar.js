@@ -4,7 +4,6 @@ import "./NavBar.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import BotonCarrito from '../../tienda/Carrito/BotonCarrito';
 import 'animate.css';
-import Formulario from '../../tienda/Login/Login';
 import { UserContext } from '../../tienda/context/UserContext';
 import { Link } from 'react-router-dom';
 
